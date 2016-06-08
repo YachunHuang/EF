@@ -10,8 +10,6 @@ namespace EF
     {
         static void Main(string[] args)
         {
-            using (var db = new ContosoUniversityEntities())
-            {
                 //print b.title
                 //db.Course.AsEnumerable().Select(i => i.Title).ToList().ForEach(b => Console.Write(b));
 
@@ -34,15 +32,39 @@ namespace EF
 
                 //DBSet
 
-                var c = db.Course.Find(2);
+                //var c = db.Course.Find(2);
                 //Console.WriteLine(db.Entry(c).State);
                 //c.Credits += 1;
                 //Console.WriteLine(db.Entry(c).State);
                 //db.Entry(c).State = System.Data.Entity.EntityState.Deleted;
                 //Console.WriteLine(db.Entry(c).State);
                 //複製並寫入一筆一樣的
-                db.Entry(c).State = System.Data.Entity.EntityState.Added;
-                db.SaveChanges();
+                //db.Entry(c).State = System.Data.Entity.EntityState.Added;
+                //db.SaveChanges();
+            //}
+                //離線應用
+                var item = new Course()
+                {
+                    CourseID = 9,
+                    Title = "Have a nice day!!",
+                    Credits = 2,
+                    DepartmentID = 1
+                };
+
+            using (var db1 = new ContosoUniversityEntities())
+            {
+                //Attach暫存:unchange，如果改了item的資料的話就會有狀態了，不用在特別給狀態。所以可以直接SaveChanges
+                //db1.Course.Attach(item);//會有cache
+                // db1.Entry(item).State = System.Data.Entity.EntityState.Added;
+                item = db1.Course.Find(2);
+                item.Title = "Have a nice day!!";
+                //db1.Entry(item).State = System.Data.Entity.EntityState.Added;
+            }
+
+            using (var db2 = new ContosoUniversityEntities())
+            {
+                db2.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                db2.SaveChanges();
             }
         }
     }
