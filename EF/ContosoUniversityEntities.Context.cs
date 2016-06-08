@@ -16,7 +16,7 @@ namespace EF
     public partial class ContosoUniversityEntities : DbContext
     {
         public ContosoUniversityEntities()
-            : base("name=ContosoUniversityEntities")
+            : base("name=ContosoUniversityEntities1")
         {
         }
     
