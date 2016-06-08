@@ -25,6 +25,8 @@ namespace EF
         public string Title { get; set; }
         public int Credits { get; set; }
         public int DepartmentID { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

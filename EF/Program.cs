@@ -12,10 +12,25 @@ namespace EF
         {
             using (var db = new ContosoUniversityEntities())
             {
-                foreach (var item in db.Course)
+                //print b.title
+                //db.Course.AsEnumerable().Select(i => i.Title).ToList().ForEach(b => Console.Write(b));
+
+                //SqlCommand
+                //db.Database.ExecuteSqlCommand("INSERT INTO Course (Title,Credits,DepartmentID)VALUES('KiwiCourse',1,1)");
+
+                var item = new Course()
                 {
-                    Console.Write(item.Title);
-                }
+                    CourseID = 9,
+                    Title = "KiwiGo",
+                    Credits = 2,
+                    DepartmentID = 1
+                };
+                db.Course.Add(item);
+
+                var findOne = db.Course.Find(8);
+                findOne.Credits += 1;
+                findOne.ModifyDate = DateTime.Now;
+                db.SaveChanges();
             }
         }
     }
