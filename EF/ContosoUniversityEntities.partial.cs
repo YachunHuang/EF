@@ -15,15 +15,17 @@ namespace EF
             
             foreach (var entry in entities)
             {
-                Console.WriteLine("Entity Name:{0}", entry.Entity.GetType().FullName);
-                Console.WriteLine("Status:{0}", entry.State);
- 
                 if (entry.State == EntityState.Added)
                 {
                     if (entry.Entity is Course)
                     {
                         var c = entry.Entity as Course;
                         c.Credits += 1;
+                    }
+                    if (entry.Entity is Department)
+                    {
+                        var c = entry.Entity as Department;
+                        c.Name += "!";
                     }
                     entry.CurrentValues.SetValues(new { ModifyDate = DateTime.Now });
                 }
