@@ -72,6 +72,9 @@
     <Compile Include="Course.cs">
       <DependentUpon>ContosoUniversityEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="CourseCredit.cs">
+      <DependentUpon>ContosoUniversityEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Department.cs">
       <DependentUpon>ContosoUniversityEntities.tt</DependentUpon>
     </Compile>

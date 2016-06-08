@@ -15,9 +15,9 @@ namespace EF
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class ContosoUniversityEntities : DbContext
+    public partial class ContosoUniversityEntities1 : DbContext
     {
-        public ContosoUniversityEntities()
+        public ContosoUniversityEntities1()
             : base("name=ContosoUniversityEntities1")
         {
         }

@@ -23,7 +23,7 @@ namespace EF
     
         public int CourseID { get; set; }
         public string Title { get; set; }
-        public int Credits { get; set; }
+        public CourseCredit Credits { get; set; }
         public int DepartmentID { get; set; }
         public System.DateTime CreateDate { get; set; }
         public Nullable<System.DateTime> ModifyDate { get; set; }

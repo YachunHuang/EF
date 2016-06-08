@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace EF
 {
-    public partial class ContosoUniversityEntities : DbContext
+    public partial class ContosoUniversityEntities1 : DbContext
     {
         public override int SaveChanges()
         {
@@ -27,6 +27,10 @@ namespace EF
                         var c = entry.Entity as Department;
                         c.Name += "!";
                     }
+                    entry.CurrentValues.SetValues(new { ModifyDate = DateTime.Now });
+                }
+                if (entry.State == EntityState.Modified)
+                {
                     entry.CurrentValues.SetValues(new { ModifyDate = DateTime.Now });
                 }
             }

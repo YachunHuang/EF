@@ -10,13 +10,28 @@ namespace EF
     {
         static void Main(string[] args)
         {
-            using (var db = new ContosoUniversityEntities())
+            using (var db = new ContosoUniversityEntities1())
             {
-                db.Database.Log = Console.WriteLine;
-                var c = db.Department.Find(2);
-                db.Entry(c).State = System.Data.Entity.EntityState.Added;
-                db.SaveChanges();
+                #region === 列舉 ===
+               
+                //var c = db.Course.Find(2);
+                //c.Credits = CourseCredit.中級;
+                //db.Entry(c).State = System.Data.Entity.EntityState.Modified;
+                //db.SaveChanges();
 
+                var a = db.Course.Where(r=> r.Credits.HasFlag(CourseCredit.中級) | r.Credits.HasFlag(CourseCredit.高級));
+                foreach (var item in a)
+                {
+                    Console.WriteLine(item.Title+":"+item.Credits);
+                }
+                #endregion
+
+                #region === 預存處理程序 ===
+                //db.Database.Log = Console.WriteLine;
+                //var c = db.Department.Find(2);
+                //db.Entry(c).State = System.Data.Entity.EntityState.Added;
+                //db.SaveChanges();
+                #endregion
                 //print b.title
                 //db.Course.AsEnumerable().Select(i => i.Title).ToList().ForEach(b => Console.Write(b));
 
